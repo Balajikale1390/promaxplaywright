@@ -14,7 +14,7 @@ let inventoryPage: InventoryPage;
 let checkoutPage: CheckoutPage;
 
 Before(async () => {
-  browser = await chromium.launch({ headless: false });
+  browser = await chromium.launch({ headless: process.env.CI === 'true' ? true : false });
   page = await browser.newPage();
 
   loginPageInstance = new LoginPage(page);
